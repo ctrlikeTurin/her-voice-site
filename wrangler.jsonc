@@ -1,0 +1,8 @@
+{
+  "name": "her-voice",
+  "compatibility_date": "2026-10-01",
+  "pages_build_output_dir": "./public",
+  "kv_namespaces": [
+    { "binding": "SITE", "id": "8b91c532cbd84e5da3790b423ae12e6f" }
+  ]
+}

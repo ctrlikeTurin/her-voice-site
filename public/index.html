@@ -85,6 +85,23 @@
     <div class="card"><h3>3. Recognition</h3><p data-t="solution.s3"></p></div>
     <div class="card"><h3>4. Mentorship</h3><p data-t="solution.s4"></p></div>
   </div>
+  <h3 style="margin-top:52px;font-size:1.4rem">How a week at the centre works</h3>
+  <p class="sec-lead" data-t="solution.week"></p>
+  <ol class="steps" id="steps"></ol>
+
+  <h3 style="margin-top:52px;font-size:1.4rem">From grant to graduation: our 2027 plan</h3>
+  <div class="timeline" id="timeline"></div>
+
+  <h3 style="margin-top:52px;font-size:1.4rem">How we will know it works</h3>
+  <p class="sec-lead" data-t="solution.measure"></p>
+  <div class="kpis" id="kpis"></div>
+
+  <h3 style="margin-top:52px;font-size:1.4rem">Why it keeps running after the grant</h3>
+  <div class="cols" id="lasts"></div>
+
+  <h3 style="margin-top:52px;font-size:1.4rem">Risks and how we plan for them</h3>
+  <div class="risks" id="risks"></div>
+
   <h3 style="margin-top:52px;font-size:1.4rem">Where a $10,000 grant would go</h3>
   <div class="budget" id="budget"></div>
 </section>
@@ -93,6 +110,30 @@
   <p class="eyebrow">Prototype</p>
   <h2>What we built to test the idea</h2>
   <p class="sec-lead" data-t="proto.text"></p>
+
+  <div class="demo" id="demo" aria-label="Interactive prototype of the Centre Companion tool">
+    <div class="demo-head">
+      <div>
+        <p class="tag">Interactive prototype</p>
+        <h3>Centre Companion</h3>
+      </div>
+      <span class="pill">Sample data &middot; nothing is saved</span>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Prototype screens">
+      <button type="button" role="tab" id="tab-register" aria-controls="pane-register" aria-selected="true">1. Register</button>
+      <button type="button" role="tab" id="tab-reading" aria-controls="pane-reading" aria-selected="false" tabindex="-1">2. Reading check</button>
+      <button type="button" role="tab" id="tab-dash" aria-controls="pane-dash" aria-selected="false" tabindex="-1">3. Dashboard</button>
+    </div>
+    <div class="pane" id="pane-register" role="tabpanel" aria-labelledby="tab-register"></div>
+    <div class="pane" id="pane-reading" role="tabpanel" aria-labelledby="tab-reading" hidden></div>
+    <div class="pane" id="pane-dash" role="tabpanel" aria-labelledby="tab-dash" hidden></div>
+    <p class="src">An illustration of the tool volunteer teachers would use on a phone or shared tablet. The ten learners are made up, shown by code only to protect real girls&rsquo; privacy. Real figures will come from the centre once it opens.</p>
+  </div>
+
+  <h3 style="margin-top:48px;font-size:1.4rem">What the prototype shows</h3>
+  <div class="cols" id="proto-notes"></div>
+
+  <h3 style="margin-top:48px;font-size:1.4rem">Photos and video of the model</h3>
   <div id="media-proto"></div>
 </section>
 

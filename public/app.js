@@ -16,7 +16,9 @@ var DEF = {
     "solution.s2":"Umudugudu leaders visit families, promote full attendance and identify girls who need support, while teachers track attendance and progress.",
     "solution.s3":"Small recognition for girls and families with steady attendance, funded from the grant and tracked with monthly attendance and reading checks.",
     "solution.s4":"Girls are matched with women role models, professionals and older students who build confidence and show what is possible.",
-    "proto.text":"The prototype for the Her Voice learning-centre model.",
+    "solution.week":"Each learner attends three after-school sessions a week, timed around chores and set with families. Every session follows the same simple rhythm, so volunteers can run it with light training.",
+    "solution.measure":"Every number below is something a volunteer teacher can record in a few minutes, so we can see early if a girl is slipping and act before she drops out.",
+    "proto.text":"Centre Companion is a simple tool for volunteer teachers: take the register, record a reading check, and see at a glance which girls need a home visit. Try it below. It uses made-up learners so you can click freely.",
     "chal.lead":"Each challenge pushed us out of the classroom and into the community. Here is what we did, with the evidence.",
     "team.lead":"We come from different backgrounds and share one purpose."
   },
@@ -49,6 +51,14 @@ var CH = [
 var BUDGET = [["Learning centre setup",3000],["Learning materials",2200],["Volunteer teacher stipends and training",1800],["Mentorship programme",900],["Attendance incentives",800],["Monitoring and evaluation",600],["Contingency",700]];
 var VALUES = [["Complete accountability","Each of us owns our actions and their consequences."],["Valuing diversity","Decisions are shared equally and every contribution counts."],["Adaptability","When challenges get hard, persistence helps us find a way through."]];
 var IMPACT = [["Keep girls in school","Guidance for teenagers and backing from their communities, so fewer girls drop out."],["Change what families expect","Show families the economic value of educated women, so early marriage is less relied on."],["Learning at every age","Bring education close to home so women and girls of any age can take part."]];
+var STEPS = [["Arrive and settle","Girls sign in, have a drink of water and a short check-in with the volunteer teacher."],["Guided reading","Small groups read together at their own level, from letters and words up to full paragraphs."],["One-to-one time","Each girl gets a few minutes of individual help, the thing our interviewees said was most missing."],["Write and share","A short writing task, then each girl reads a line aloud to build confidence."],["Record and send home","The teacher records attendance and marks progress, and a reading task goes home to share with family."]];
+var PLAN = [["Jan to Mar 2027","Set up","Agree the classroom with the partner school, recruit and train volunteer teachers, buy materials, and enrol the first 60 girls with umudugudu leaders."],["Apr to Aug 2027","Run","Three sessions a week, monthly reading checks, household visits for girls whose attendance dips, and the first mentor matches."],["Sep to Nov 2027","Strengthen","Share results with families and the school, recognise steady attendance, and train older students to lead groups."],["Dec 2027","Hand over","Final reading check and retention count, a published results summary, and a plan for the partner school and leaders to keep the centre running."]];
+var KPIS = [["60","girls enrolled","by early 2027"],["70%","reading level raised","target for enrolled girls"],["90%","still in school","at the end of 2027"],["3","sessions a week","per learner"]];
+var LASTS = [["Local ownership","The classroom, the volunteers and the household visits all come from the community, so the centre does not depend on paid staff."],["Older students as leaders","Girls who finish become group leaders and mentors, which keeps volunteers coming and gives younger girls someone to look up to."],["Families see the value","Attendance recognition and shared results show families the benefit of an educated daughter, which helps them keep sending her."],["Low running cost","After setup, the main costs are materials and small stipends, which the school, leaders and local partners can look to share."]];
+var RISKS = [["Girls miss sessions because of chores or illness","Sessions are timed with families, and the register flags falling attendance so leaders can visit early."],["Volunteer teachers leave","Training is short and written down, and older students are brought in as backup leaders."],["The partner school cannot lend the room","We agree this in writing at the start and identify a second venue with the umudugudu leaders."],["Progress is hard to prove","A short reading check each month on the same four levels gives a clear, comparable record."]];
+var PNOTES = [["Register in seconds","One tap per girl. Attendance rate updates straight away, the data we need for recognition and for spotting drop-out risk."],["Reading checks on one scale","Four levels, from letters to paragraphs. The same scale every month makes progress easy to see and to explain to families."],["Early-warning home visits","Girls under 75% attendance are flagged automatically so umudugudu leaders know whom to visit first."]];
+var LEVELS = ["Letters","Words","Sentences","Paragraphs"];
+var SAMPLE = [["G-01",1,1,10,12],["G-02",0,2,9,12],["G-03",1,1,11,12],["G-04",0,1,7,12],["G-05",2,3,12,12],["G-06",1,1,8,12],["G-07",0,0,6,12],["G-08",1,2,10,12],["G-09",2,2,11,12],["G-10",0,1,9,12]];
 CH.forEach(function(ch){ DEF.text[ch.id+".blurb"]=ch.b; });
 
 var S = JSON.parse(JSON.stringify(DEF));
@@ -107,6 +117,103 @@ function renderStatic(){
     b.append(h("div",{class:"bar-row"},h("span",null,r[0]),h("div",{class:"bar-track"},h("div",{class:"bar-fill",style:"width:"+(r[1]/max*100).toFixed(1)+"%"})),h("span",{class:"bar-val"},"$"+r[1].toLocaleString("en-US"))));
   });
   b.append(h("div",{class:"total"},h("span",null,"Total"),h("span",null,"$"+total.toLocaleString("en-US"))));
+  var st=$("#steps"); st.textContent="";
+  STEPS.forEach(function(x){ st.append(h("li",null,h("strong",null,x[0]),h("span",null,x[1]))); });
+  var tl=$("#timeline"); tl.textContent="";
+  PLAN.forEach(function(x){ tl.append(h("div",{class:"phase"},h("span",{class:"when"},x[0]),h("h4",null,x[1]),h("p",null,x[2]))); });
+  var kp=$("#kpis"); kp.textContent="";
+  KPIS.forEach(function(x){ kp.append(h("div",{class:"kpi"},h("span",{class:"big"},x[0]),h("strong",null,x[1]),h("span",{class:"small"},x[2]))); });
+  var la=$("#lasts"); la.textContent="";
+  LASTS.forEach(function(x){ la.append(h("div",{class:"card"},h("h3",null,x[0]),h("p",null,x[1]))); });
+  var ri=$("#risks"); ri.textContent="";
+  RISKS.forEach(function(x){ ri.append(h("div",{class:"risk"},h("strong",null,x[0]),h("p",null,x[1]))); });
+  var pn=$("#proto-notes"); pn.textContent="";
+  PNOTES.forEach(function(x){ pn.append(h("div",{class:"card"},h("h3",null,x[0]),h("p",null,x[1]))); });
+}
+
+/* ---------- prototype: Centre Companion (sample data, in memory only) ---------- */
+var D=null, tab="register", pick=0, today={};
+function demoReset(){
+  D=SAMPLE.map(function(r){ return {id:r[0],start:r[1],level:r[2],present:r[3],sessions:r[4]}; });
+  today={}; pick=0;
+}
+function rate(g){ return g.sessions?g.present/g.sessions:0; }
+function pct(x){ return Math.round(x*100)+"%"; }
+function demoTabs(){
+  ["register","reading","dash"].forEach(function(t){
+    var on=(t===tab);
+    var b=$("#tab-"+t); b.setAttribute("aria-selected",on?"true":"false"); b.tabIndex=on?0:-1;
+    $("#pane-"+t).hidden=!on;
+  });
+}
+function demoRegister(){
+  var p=$("#pane-register"); p.textContent="";
+  var n=D.filter(function(g){return today[g.id];}).length;
+  p.append(h("p",{class:"hint"},"Tap a learner to mark her present for today’s session."));
+  var grid=h("div",{class:"reg"});
+  D.forEach(function(g){
+    var on=!!today[g.id];
+    grid.append(h("button",{type:"button",class:"chip"+(on?" on":""),"aria-pressed":on?"true":"false",onclick:function(){ today[g.id]=!today[g.id]; demoRegister(); var f=$("#pane-register .chip:nth-child("+(D.indexOf(g)+1)+")"); if(f)f.focus(); }},
+      h("strong",null,g.id),h("span",null,on?"Present":"Not marked")));
+  });
+  p.append(grid);
+  p.append(h("div",{class:"demo-foot"},h("span",null,n+" of "+D.length+" present today"),
+    h("button",{type:"button",class:"btn small",onclick:function(){
+      D.forEach(function(g){ g.sessions++; if(today[g.id]) g.present++; });
+      today={}; demoRegister(); setDemoNote("Session recorded. Check the Dashboard to see attendance update.");
+    }},"Save today’s register")));
+  p.append(h("p",{class:"hint",id:"demo-note",role:"status"}));
+}
+function setDemoNote(t){ var e=$("#demo-note"); if(e)e.textContent=t; }
+function demoReading(){
+  var p=$("#pane-reading"); p.textContent="";
+  var g=D[pick];
+  p.append(h("p",{class:"hint"},"Choose a learner and record the highest level she read comfortably in this month’s check."));
+  var sel=h("select",{id:"rd-who","aria-label":"Learner",onchange:function(e){ pick=+e.target.value; demoReading(); $("#rd-who").focus(); }});
+  D.forEach(function(x,i){ sel.append(h("option",{value:i,selected:i===pick},x.id)); });
+  p.append(h("div",{class:"rd-row"},h("label",{class:"tag",for:"rd-who"},"Learner"),sel));
+  p.append(h("p",{class:"rd-now"},"Started at ",h("strong",null,LEVELS[g.start]),", now at ",h("strong",null,LEVELS[g.level])));
+  var lv=h("div",{class:"levels",role:"group","aria-label":"Reading level"});
+  LEVELS.forEach(function(name,i){
+    lv.append(h("button",{type:"button",class:"lvl"+(i===g.level?" on":""),"aria-pressed":i===g.level?"true":"false",onclick:function(){ g.level=i; demoReading(); var f=$("#pane-reading .lvl:nth-child("+(i+1)+")"); if(f)f.focus(); }},h("span",{class:"n"},i+1),name));
+  });
+  p.append(lv);
+}
+function demoDash(){
+  var p=$("#pane-dash"); p.textContent="";
+  var tp=D.reduce(function(a,g){return a+g.present;},0), ts=D.reduce(function(a,g){return a+g.sessions;},0);
+  var att=ts?tp/ts:0;
+  var up=D.filter(function(g){return g.level>g.start;}).length/D.length;
+  var risk=D.filter(function(g){return rate(g)<0.75;});
+  function stat(label,val,target,w){
+    return h("div",{class:"dstat"},h("span",{class:"tag"},label),h("strong",null,val),
+      h("div",{class:"bar-track"},h("div",{class:"bar-fill",style:"width:"+Math.min(100,w*100).toFixed(0)+"%"})),
+      h("span",{class:"small"},target));
+  }
+  p.append(h("div",{class:"dgrid"},
+    stat("Attendance",pct(att),"Aim: 75% or more for every girl",att),
+    stat("Reading level raised",pct(up),"Programme target: 70%",up),
+    stat("Learners enrolled",String(D.length),"Sample of ten; real target is 60",D.length/10)));
+  p.append(h("h4",null,"Needs a home visit"));
+  if(risk.length){
+    var ul=h("ul",{class:"risklist"});
+    risk.sort(function(a,b){return rate(a)-rate(b);}).forEach(function(g){ ul.append(h("li",null,h("strong",null,g.id),h("span",null,pct(rate(g))+" attendance ("+g.present+" of "+g.sessions+" sessions)"))); });
+    p.append(ul);
+  }else p.append(h("p",{class:"hint"},"Everyone is above 75%. Nobody is flagged."));
+  p.append(h("button",{type:"button",class:"btn small ghost",style:"color:var(--ink);margin-top:14px",onclick:function(){ demoReset(); renderDemo(); }},"Reset sample data"));
+}
+function renderDemo(){ if(!D)demoReset(); demoRegister(); demoReading(); demoDash(); demoTabs(); }
+function initDemo(){
+  var order=["register","reading","dash"];
+  order.forEach(function(t,i){
+    var b=$("#tab-"+t);
+    b.addEventListener("click",function(){ tab=t; demoDash(); demoTabs(); });
+    b.addEventListener("keydown",function(e){
+      var j=e.key==="ArrowRight"?(i+1)%3:e.key==="ArrowLeft"?(i+2)%3:-1;
+      if(j<0)return; e.preventDefault(); tab=order[j]; demoDash(); demoTabs(); $("#tab-"+tab).focus();
+    });
+  });
+  renderDemo();
 }
 function mediaItem(k,i,it){
   var fig, yt;
@@ -311,6 +418,7 @@ function load(){
 }
 
 renderAll();
+initDemo();
 load();
 var saved=stored();
 if(saved){

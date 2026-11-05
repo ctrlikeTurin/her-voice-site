@@ -202,6 +202,46 @@ function demoDash(){
   }else p.append(h("p",{class:"hint"},"Everyone is above 75%. Nobody is flagged."));
   p.append(h("button",{type:"button",class:"btn small ghost",style:"color:var(--ink);margin-top:14px",onclick:function(){ demoReset(); renderDemo(); }},"Reset sample data"));
 }
+/* ---------- network diagram ---------- */
+var NET = [
+  {id:"c",x:300,y:230,r:58,t:"Learning centre",d:"An after-school reading club three times a week, in a classroom lent by the partner school. Everything else connects here."},
+  {id:"g",x:300,y:62,t:"Girls 12 to 18",d:"60 girls from Kibagabaga attend, read at their own level, get one-to-one help and take reading home."},
+  {id:"f",x:500,y:130,t:"Families",d:"Agree session times around chores, receive reading tasks and attendance recognition, and see their daughter progress."},
+  {id:"u",x:510,y:330,t:"Umudugudu leaders",d:"Help enrol girls and visit families when the register shows attendance falling."},
+  {id:"s",x:300,y:400,t:"Partner school",d:"Lends the classroom and shares information on school attendance, so we can track who stays in school."},
+  {id:"v",x:90,y:330,t:"Volunteer teachers",d:"Trained volunteers and older students run sessions and record attendance and reading checks."},
+  {id:"m",x:100,y:130,t:"Mentors",d:"Women professionals and older students who build confidence and show girls what is possible."},
+  {id:"a",x:180,y:230,r:30,t:"Centre Companion",d:"The tool in our prototype below. The register and reading checks flow into it, and it flags girls who need a home visit."}
+];
+var LINKS=[["c","g"],["c","f"],["c","u"],["c","s"],["c","v"],["c","m"],["v","a"],["a","u"],["u","f"],["f","g"],["m","g"],["s","v"]];
+var SVGNS="http://www.w3.org/2000/svg";
+function sv(tag,attrs){ var e=document.createElementNS(SVGNS,tag); Object.keys(attrs||{}).forEach(function(k){e.setAttribute(k,attrs[k]);}); return e; }
+function initNet(){
+  var svg=$("#net-svg"), info=$("#net-info"), by={};
+  NET.forEach(function(n){ by[n.id]=n; });
+  LINKS.forEach(function(l,i){
+    var a=by[l[0]], b=by[l[1]];
+    svg.append(sv("line",{x1:a.x,y1:a.y,x2:b.x,y2:b.y,class:"edge"}));
+    svg.append(sv("line",{x1:a.x,y1:a.y,x2:b.x,y2:b.y,class:"pulse",style:"animation-delay:"+(i*0.35)+"s","data-a":l[0],"data-b":l[1]}));
+  });
+  function show(n){
+    info.textContent=""; info.append(h("strong",null,n.t),h("p",null,n.d));
+    svg.querySelectorAll(".node").forEach(function(g){ g.classList.toggle("sel",g.getAttribute("data-id")===n.id); });
+    svg.querySelectorAll(".pulse").forEach(function(p){ p.classList.toggle("hot",p.getAttribute("data-a")===n.id||p.getAttribute("data-b")===n.id); });
+  }
+  NET.forEach(function(n){
+    var r=n.r||40;
+    var g=sv("g",{class:"node"+(n.id==="c"?" core":n.id==="a"?" tool":""),tabindex:"0",role:"button","data-id":n.id,"aria-label":n.t});
+    g.append(sv("circle",{cx:n.x,cy:n.y,r:r}));
+    var words=n.t.split(" "), lines=words.length>2?[words.slice(0,2).join(" "),words.slice(2).join(" ")]:words.length===2&&n.t.length>12?words:[n.t];
+    lines.forEach(function(w,i){ var t=sv("text",{x:n.x,y:n.y+(i-(lines.length-1)/2)*15+5}); t.textContent=w; g.append(t); });
+    g.addEventListener("click",function(){show(n);});
+    g.addEventListener("keydown",function(e){ if(e.key==="Enter"||e.key===" "){e.preventDefault();show(n);} });
+    svg.append(g);
+  });
+  show(by.c);
+}
+
 function renderDemo(){ if(!D)demoReset(); demoRegister(); demoReading(); demoDash(); demoTabs(); }
 function initDemo(){
   var order=["register","reading","dash"];
@@ -418,6 +458,7 @@ function load(){
 }
 
 renderAll();
+initNet();
 initDemo();
 load();
 var saved=stored();

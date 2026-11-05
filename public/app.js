@@ -242,6 +242,44 @@ function initNet(){
   show(by.c);
 }
 
+/* ---------- one girl's journey ---------- */
+var JOURNEY = [
+  {m:"January",t:"Enrolled",lvl:0,att:null,s:"Keza is 13 and fetches water before school. Her umudugudu leader visits her family, and they agree on a session time after her chores."},
+  {m:"March",t:"First reading check",lvl:1,att:83,s:"After two months of guided reading she moves from letters to words. A volunteer gives her one-to-one time each session."},
+  {m:"May",t:"A dip, then a home visit",lvl:1,att:68,s:"Her mother is ill and Keza misses sessions. Centre Companion flags her under 75%, a leader visits, and the family is helped to plan around care work."},
+  {m:"July",t:"Matched with a mentor",lvl:2,att:80,s:"Keza meets a woman nurse from the area who visits monthly. She now reads full sentences and reads aloud to her younger brother."},
+  {m:"October",t:"Recognised",lvl:2,att:88,s:"Steady attendance earns Keza and her family recognition at a centre gathering. Her parents now ask about her next school year."},
+  {m:"December",t:"Reading and still in school",lvl:3,att:90,s:"At the final check she reads whole paragraphs. She is still in school, and next year she will help lead a group of younger girls."}
+];
+var jr=0, jrTimer=null;
+function renderJourney(){
+  var tr=$("#jr-track"); tr.textContent="";
+  tr.style.setProperty("--p",(jr/(JOURNEY.length-1)*100)+"%");
+  JOURNEY.forEach(function(x,i){
+    tr.append(h("button",{type:"button",class:"jr-dot"+(i<=jr?" done":"")+(i===jr?" cur":""),"aria-label":x.m+": "+x.t,"aria-current":i===jr?"step":false,onclick:function(){ stopJourney(); jr=i; renderJourney(); }},h("span",null,x.m.slice(0,3))));
+  });
+  var x=JOURNEY[jr], c=$("#jr-card"); c.textContent="";
+  var lv=h("div",{class:"jr-levels"});
+  LEVELS.forEach(function(n,i){ lv.append(h("span",{class:i<=x.lvl?"on":""},n)); });
+  c.append(h("p",{class:"tag"},x.m+" 2027"),h("h4",null,x.t),h("p",null,x.s),
+    h("div",{class:"jr-stats"},
+      h("div",null,h("span",{class:"tag"},"Reading level"),lv),
+      h("div",null,h("span",{class:"tag"},"Attendance so far"),h("strong",{class:x.att!=null&&x.att<75?"warn":""},x.att==null?"Just started":x.att+"%"))));
+  $("#jr-prev").disabled=jr===0; $("#jr-next").disabled=jr===JOURNEY.length-1;
+}
+function stopJourney(){ if(jrTimer){clearInterval(jrTimer);jrTimer=null;} $("#jr-play").textContent="Play"; }
+function initJourney(){
+  $("#jr-prev").addEventListener("click",function(){ stopJourney(); if(jr>0){jr--;renderJourney();} });
+  $("#jr-next").addEventListener("click",function(){ stopJourney(); if(jr<JOURNEY.length-1){jr++;renderJourney();} });
+  $("#jr-play").addEventListener("click",function(){
+    if(jrTimer){ stopJourney(); return; }
+    if(jr===JOURNEY.length-1) jr=0;
+    renderJourney(); this.textContent="Pause";
+    jrTimer=setInterval(function(){ if(jr>=JOURNEY.length-1){stopJourney();return;} jr++; renderJourney(); },3500);
+  });
+  renderJourney();
+}
+
 function renderDemo(){ if(!D)demoReset(); demoRegister(); demoReading(); demoDash(); demoTabs(); }
 function initDemo(){
   var order=["register","reading","dash"];
@@ -459,6 +497,7 @@ function load(){
 
 renderAll();
 initNet();
+initJourney();
 initDemo();
 load();
 var saved=stored();

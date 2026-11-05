@@ -141,6 +141,25 @@ figcaption{font-family:var(--display);font-size:14px;color:var(--muted);margin-t
 @media (prefers-reduced-motion:reduce){.pulse{animation:none;stroke-dasharray:none;opacity:.35}}
 @media (max-width:640px){.net-body{grid-template-columns:1fr}}
 
+/* journey */
+.jr-track{--p:0%;position:relative;display:flex;justify-content:space-between;margin:26px 6px 0}
+.jr-track::before,.jr-track::after{content:"";position:absolute;left:0;top:50%;height:4px;margin-top:-2px;background:var(--line);right:0;z-index:0}
+.jr-track::after{background:var(--accent);right:auto;width:var(--p);transition:width .6s ease}
+.jr-dot{position:relative;z-index:1;width:42px;height:42px;border-radius:50%;border:3px solid var(--line);background:var(--surface);color:var(--muted);font-family:var(--display);font-weight:700;font-size:12px;cursor:pointer;padding:0;transition:all .3s}
+.jr-dot.done{border-color:var(--accent);color:var(--ink)}
+.jr-dot.cur{background:var(--accent);color:var(--accent-ink);transform:scale(1.15)}
+.jr-card{margin-top:22px;background:var(--bg);border-radius:8px;padding:18px;min-height:210px}
+.jr-card h4{font-size:1.4rem;margin:4px 0 8px}
+.jr-card>p:not(.tag){color:var(--muted)}
+.jr-stats{display:flex;gap:28px;flex-wrap:wrap;margin-top:16px}
+.jr-stats strong{display:block;font-family:var(--display);font-size:1.6rem;margin-top:4px}
+.jr-stats strong.warn{color:var(--accent)}
+.jr-levels{display:flex;gap:4px;flex-wrap:wrap;margin-top:6px}
+.jr-levels span{font-family:var(--display);font-size:13px;font-weight:700;padding:4px 8px;border-radius:4px;background:var(--soft);color:var(--muted)}
+.jr-levels span.on{background:var(--ok);color:#fff}
+.jr-ctl{display:flex;gap:10px;margin-top:16px}
+@media (prefers-reduced-motion:reduce){.jr-track::after,.jr-dot{transition:none}}
+
 /* prototype */
 .demo{margin-top:34px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:22px;max-width:820px}
 .demo-head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:flex-start}

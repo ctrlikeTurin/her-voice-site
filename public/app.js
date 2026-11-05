@@ -34,7 +34,7 @@ var DEF = {
     ch1:[{k:"link",url:"https://youtu.be/uaQpKnMLBCk",label:"Challenge 1 video"}],
     ch2:[{k:"link",url:"https://www.youtube.com/watch?v=eA1nw2yG9kw",label:"Challenge 2 video"}],
     ch3:[{k:"link",url:"https://youtu.be/NiSLbmZsroY",label:"Challenge 3 video"}],
-    ch4:[{k:"link",url:"https://youtu.be/vewRuDzncjI",label:"Challenge 4 video"}],
+    ch4:[{k:"link",url:"https://youtu.be/vewRuDzncjI",label:"Challenge 4 video"},{k:"link",url:"https://canva.link/qqww3fv9w4j1f7n",label:"Challenge 4 slides"}],
     ch5:[{k:"link",url:"https://youtu.be/4F5xC7xuiag",label:"Pitch video"},{k:"link",url:"https://docs.google.com/presentation/d/1-6gsmfUpwDVNGD-WMVjv5JjdRJolN30dbmPTZzZxaDY/edit?usp=sharing",label:"Grant proposal slides"}],
     ch6:[],
     proto:[]

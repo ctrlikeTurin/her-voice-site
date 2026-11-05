@@ -113,7 +113,6 @@ figcaption{font-family:var(--display);font-size:14px;color:var(--muted);margin-t
 .linkcard strong{font-family:var(--display);font-size:16px}
 .linkcard span{font-size:13px;color:var(--muted);overflow-wrap:anywhere}
 .linkcard:hover{border-color:var(--accent)}
-.empty{margin-top:18px;color:var(--muted);font-size:15px;font-style:italic}
 
 /* solution detail */
 .steps{list-style:none;counter-reset:s;padding:0;margin:30px 0 0;display:grid;gap:12px;max-width:760px}

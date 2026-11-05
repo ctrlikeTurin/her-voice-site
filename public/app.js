@@ -35,9 +35,7 @@ var DEF = {
     ch2:[{k:"link",url:"https://www.youtube.com/watch?v=eA1nw2yG9kw",label:"Challenge 2 video"}],
     ch3:[{k:"link",url:"https://youtu.be/NiSLbmZsroY",label:"Challenge 3 video"}],
     ch4:[{k:"link",url:"https://youtu.be/vewRuDzncjI",label:"Challenge 4 video"},{k:"link",url:"https://canva.link/qqww3fv9w4j1f7n",label:"Challenge 4 slides"}],
-    ch5:[{k:"link",url:"https://youtu.be/4F5xC7xuiag",label:"Pitch video"},{k:"link",url:"https://docs.google.com/presentation/d/1-6gsmfUpwDVNGD-WMVjv5JjdRJolN30dbmPTZzZxaDY/edit?usp=sharing",label:"Grant proposal slides"}],
-    ch6:[],
-    proto:[]
+    ch5:[{k:"link",url:"https://youtu.be/4F5xC7xuiag",label:"Pitch video"},{k:"link",url:"https://docs.google.com/presentation/d/1-6gsmfUpwDVNGD-WMVjv5JjdRJolN30dbmPTZzZxaDY/edit?usp=sharing",label:"Grant proposal slides"}]
   }
 };
 var CH = [
@@ -55,7 +53,6 @@ var PLAN = [["Jan to Mar 2027","Set up","Agree the classroom with the partner sc
 var KPIS = [["60","girls enrolled","by early 2027"],["70%","reading level raised","target for enrolled girls"],["90%","still in school","at the end of 2027"],["3","sessions a week","per learner"]];
 var LASTS = [["Local ownership","The classroom, the volunteers and the household visits all come from the community, so the centre does not depend on paid staff."],["Older students as leaders","Girls who finish become group leaders and mentors, which keeps volunteers coming and gives younger girls someone to look up to."],["Families see the value","Attendance recognition and shared results show families the benefit of an educated daughter, which helps them keep sending her."],["Low running cost","After setup, the main costs are materials and small stipends, which the school, leaders and local partners can look to share."]];
 var RISKS = [["Girls miss sessions because of chores or illness","Sessions are timed with families, and the register flags falling attendance so leaders can visit early."],["Volunteer teachers leave","Training is short and written down, and older students are brought in as backup leaders."],["The partner school cannot lend the room","We agree this in writing at the start and identify a second venue with the umudugudu leaders."],["Progress is hard to prove","A short reading check each month on the same four levels gives a clear, comparable record."]];
-var PNOTES = [["Register in seconds","One tap per girl. Attendance rate updates straight away, the data we need for recognition and for spotting drop-out risk."],["Reading checks on one scale","Four levels, from letters to paragraphs. The same scale every month makes progress easy to see and to explain to families."],["Early-warning home visits","Girls under 75% attendance are flagged automatically so umudugudu leaders know whom to visit first."]];
 var LEVELS = ["Letters","Words","Sentences","Paragraphs"];
 var SAMPLE = [["G-01",1,1,10,12],["G-02",0,2,9,12],["G-03",1,1,11,12],["G-04",0,1,7,12],["G-05",2,3,12,12],["G-06",1,1,8,12],["G-07",0,0,6,12],["G-08",1,2,10,12],["G-09",2,2,11,12],["G-10",0,1,9,12]];
 CH.forEach(function(ch){ DEF.text[ch.id+".blurb"]=ch.b; });
@@ -126,8 +123,6 @@ function renderStatic(){
   LASTS.forEach(function(x){ la.append(h("div",{class:"card"},h("h3",null,x[0]),h("p",null,x[1]))); });
   var ri=$("#risks"); ri.textContent="";
   RISKS.forEach(function(x){ ri.append(h("div",{class:"risk"},h("strong",null,x[0]),h("p",null,x[1]))); });
-  var pn=$("#proto-notes"); pn.textContent="";
-  PNOTES.forEach(function(x){ pn.append(h("div",{class:"card"},h("h3",null,x[0]),h("p",null,x[1]))); });
 }
 
 /* ---------- prototype: Centre Companion (sample data, in memory only) ---------- */
@@ -315,7 +310,6 @@ function mediaBlock(k){
   var list=S.media[k]||(S.media[k]=[]);
   var wrap=h("div",null);
   if(list.length){ wrap.append(h("div",{class:"media"},list.map(function(it,i){return mediaItem(k,i,it);}))); }
-  else if(!editing){ wrap.append(h("p",{class:"empty"},"Evidence for this section is being added.")); }
   if(editing){ wrap.append(editBar(k)); }
   return wrap;
 }
@@ -338,7 +332,6 @@ function editBar(k){
   return bar;
 }
 function renderMedia(){
-  var p=$("#media-proto"); p.textContent=""; p.append(mediaBlock("proto"));
   var c=$("#chal"); c.textContent="";
   CH.forEach(function(ch){
     var card=h("article",{class:"chal-card",id:ch.id});

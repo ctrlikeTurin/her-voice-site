@@ -141,6 +141,12 @@ figcaption{font-family:var(--display);font-size:14px;color:var(--muted);margin-t
 @media (prefers-reduced-motion:reduce){.pulse{animation:none;stroke-dasharray:none;opacity:.35}}
 @media (max-width:640px){.net-body{grid-template-columns:1fr}}
 
+.c6-badge{display:inline-block;margin-top:12px;font-family:var(--display);font-size:13px;font-weight:700;letter-spacing:.04em;border:2px solid var(--sun);color:var(--band-ink);padding:5px 12px;border-radius:99px}
+.c6-card{margin-top:18px;background:var(--band);border-color:var(--band)}
+.c6-card h3{color:var(--band-ink)}
+.c6-card .chal-num{color:var(--sun)}
+.c6-card .blurb{color:var(--band-muted)}
+
 /* journey */
 .jr-track{--p:0%;position:relative;display:flex;justify-content:space-between;margin:26px 6px 0}
 .jr-track::before,.jr-track::after{content:"";position:absolute;left:0;top:50%;height:4px;margin-top:-2px;background:var(--line);right:0;z-index:0}

@@ -45,8 +45,7 @@ var CH = [
   {id:"ch2",n:"Challenge 02",t:"Discover Africa",b:"We explored the challenges and opportunities across Africa that led us to focus on girls’ education."},
   {id:"ch3",n:"Challenge 03",t:"HELP-LAB",b:"We supported top-performing students at Kibagabaga Primary School with stationery and documented the visit on video."},
   {id:"ch4",n:"Challenge 04",t:"Hunt for Treasure",b:"We interviewed an entrepreneur outside ALU about how they started, why they took on their cause, how they run day to day, their challenges, successes and plans, then reflected as a team on what it means for our own path."},
-  {id:"ch5",n:"Challenge 05",t:"Launch Your Mission",b:"We turned our research into a $10,000 grant proposal and a three-minute pitch: the mission, the problem, a community-led learning-centre model and a budget that fits."},
-  {id:"ch6",n:"Challenge 06",t:"Your Digital Print",b:"This website: our mission, problem, solution, prototype, team and the record of all six challenges."}
+  {id:"ch5",n:"Challenge 05",t:"Launch Your Mission",b:"We turned our research into a $10,000 grant proposal and a three-minute pitch: the mission, the problem, a community-led learning-centre model and a budget that fits."}
 ];
 var BUDGET = [["Learning centre setup",3000],["Learning materials",2200],["Volunteer teacher stipends and training",1800],["Mentorship programme",900],["Attendance incentives",800],["Monitoring and evaluation",600],["Contingency",700]];
 var VALUES = [["Complete accountability","Each of us owns our actions and their consequences."],["Valuing diversity","Decisions are shared equally and every contribution counts."],["Adaptability","When challenges get hard, persistence helps us find a way through."]];

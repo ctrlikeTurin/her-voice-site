@@ -51,19 +51,17 @@ img{max-width:100%}
 .zig{display:block;width:100%;height:46px;margin-top:44px}
 .zig path{fill:none;stroke-width:4;stroke-linejoin:miter}
 
-/* photos: illustrative, openly licensed, credited in each caption */
+/* photos: illustrative, openly licensed, credited in the footer */
 .pic{margin:0;min-width:0}
 .pic img{display:block;width:100%;height:auto;border-radius:8px;background:var(--soft)}
-.pic figcaption{font-size:13px;line-height:1.45}
-.pic figcaption a{color:inherit}
+.pic img.crop{aspect-ratio:4/3;object-fit:cover}
 .hero-grid{display:grid;gap:32px;align-items:center}
 .hero-pic img{border:4px solid var(--sun)}
-.hero .pic figcaption{color:var(--band-muted)}
 .split{display:grid;gap:28px;margin-top:26px;align-items:center}
 .split.top{align-items:start}
-.split .statement,.split .prose{margin-top:0}
-.pic.wide{margin-top:28px}
-.pic.wide img{aspect-ratio:16/7;object-fit:cover;object-position:50% 45%}
+.split .statement,.split .prose,.split .steps{margin-top:0}
+.credits{margin-top:14px;font-size:13px;line-height:1.5;max-width:100ch}
+.credits a{color:inherit}
 @media (min-width:880px){
   .hero-grid{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}
   .hero-grid h1{font-size:clamp(3.4rem,8vw,6.4rem)}
